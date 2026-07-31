@@ -1,0 +1,141 @@
+@import 'tailwindcss';
+
+:root {
+  --paper: #f3f7f5;
+  --ink: #102027;
+  --muted: #5b6d73;
+  --accent: #2dd4bf;
+  --accent-soft: rgba(45, 212, 191, 0.18);
+  --surface: rgba(255, 255, 255, 0.55);
+  --surface-strong: rgba(255, 255, 255, 0.72);
+  --stroke: rgba(16, 32, 39, 0.12);
+  --chip: rgba(16, 32, 39, 0.06);
+  --warn: #b45309;
+  --glow: rgba(45, 212, 191, 0.35);
+
+  font-family: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(120% 80% at 10% -10%, rgba(45, 212, 191, 0.28), transparent 55%),
+    radial-gradient(90% 70% at 100% 0%, rgba(14, 116, 144, 0.22), transparent 50%),
+    radial-gradient(70% 50% at 50% 100%, rgba(251, 191, 36, 0.12), transparent 55%),
+    linear-gradient(165deg, #e8f2ef 0%, #f3f7f5 45%, #e3ecef 100%);
+  background-attachment: fixed;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: repeating-linear-gradient(
+    -18deg,
+    transparent 0,
+    transparent 14px,
+    rgba(16, 32, 39, 0.03) 14px,
+    rgba(16, 32, 39, 0.03) 15px
+  );
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+.font-display {
+  font-family: 'Syne', 'Figtree', ui-sans-serif, system-ui, sans-serif;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-flash {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--glow);
+  }
+  50% {
+    box-shadow: 0 0 0 12px transparent;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rise-in-delay {
+  animation: rise-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+.rise-in-delay-2 {
+  animation: rise-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both;
+}
+
+.flash-dot {
+  animation: pulse-flash 2.4s ease-in-out infinite;
+}
+
+.progress-bar {
+  background: linear-gradient(
+    90deg,
+    rgba(45, 212, 191, 0.35),
+    var(--accent),
+    rgba(45, 212, 191, 0.35)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+
+.result-reveal {
+  animation: rise-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in,
+  .rise-in-delay,
+  .rise-in-delay-2,
+  .flash-dot,
+  .progress-bar,
+  .result-reveal {
+    animation: none;
+  }
+}
